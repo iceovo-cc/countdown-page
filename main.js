@@ -1,16 +1,25 @@
-const target = new Date('2026-10-01 00:00:00');
-function countDown(){
-    const now = new Date();
-    const diff = target - now;
-    if(diff <= 0){
-        document.getElementById('time').innerText = "时间已到！";
-        return;
-    }
-    const d = Math.floor(diff/(1000*60*60*24));
-    const h = Math.floor(diff/(1000*60*60)%24);
-    const m = Math.floor(diff/(1000*60)%60);
-    const s = Math.floor(diff/1000%60);
-    document.getElementById('time').innerText = `${d}天 ${h}时 ${m}分 ${s}秒`;
+const input = document.getElementById('todoInput');
+const addBtn = document.getElementById('addBtn');
+const list = document.getElementById('todoList');
+
+// 添加待办
+addBtn.onclick = addTodo;
+input.addEventListener('keydown',e=>e.key==='Enter'&&addTodo());
+
+function addTodo(){
+    const text = input.value.trim();
+    if(!text) return;
+
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <span>${text}</span>
+        <span class="del">删除</span>
+    `;
+    // 点击完成划线
+    li.querySelector('span').onclick = ()=>li.classList.toggle('done');
+    // 删除
+    li.querySelector('.del').onclick = ()=>li.remove();
+
+    list.appendChild(li);
+    input.value = '';
 }
-countDown();
-setInterval(countDown,1000);

@@ -2,13 +2,17 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>倒计时页面</title>
+    <title>待办事项清单</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
-        <h1>距离 2026 年国庆还有</h1>
-        <div class="time" id="time"></div>
+    <div class="container">
+        <h1>我的待办事项</h1>
+        <div class="input-box">
+            <input type="text" id="todoInput" placeholder="输入新待办...">
+            <button id="addBtn">添加</button>
+        </div>
+        <ul id="todoList"></ul>
     </div>
     <script src="main.js"></script>
 </body>
